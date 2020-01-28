@@ -1,4 +1,4 @@
-openmrs-config-ces
+openmrs-config-pihliberia
 ==============================
 
 #### Usage
