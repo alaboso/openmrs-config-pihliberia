@@ -6,7 +6,7 @@
     <name>PIH Liberia OpenMRS Configuration</name>
     <description>Top-Level configuration for PIH Liberia OpenMRS distro</description>
     <url>https://github.com/PIH/openmrs-config-pihliberia</url>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -109,6 +109,14 @@
             </activation>
             <build>
                 <plugins>
+                    <!-- note that gpg2 key must exist on Bamboo server and the key and passphrase must be
+                    passed on the command line.
+
+                    Instructions for creating a key:
+                    https://central.sonatype.org/pages/working-with-pgp-signatures.html
+
+                    Command to run: mvn
+                    -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
