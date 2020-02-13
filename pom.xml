@@ -5,8 +5,14 @@
     <artifactId>openmrs-config-pihliberia</artifactId>
     <name>PIH Liberia OpenMRS Configuration</name>
     <description>Top-Level configuration for PIH Liberia OpenMRS distro</description>
+    <url>https://github.com/PIH/openmrs-config-pihliberia</url>
     <version>1.0.0</version>
     <packaging>pom</packaging>
+
+    <organization>
+        <name>Partners In Health</name>
+        <url>http://pih.org</url>
+    </organization>
 
     <developers>
         <developer>
@@ -14,11 +20,18 @@
         </developer>
     </developers>
 
-    <organization>
-        <name>Partners In Health</name>
-        <url>http://pih.org</url>
-    </organization>
+    <licenses>
+        <license>
+            <name>Mozilla Public License 2.0 with Healthcare Disclaimer</name>
+            <url>http://openmrs.org/license</url>
+        </license>
+    </licenses>
 
+    <scm>
+        <connection>scm:git:git://github.com/PIH/openmrs-config-pihliberia.git</connection>
+        <developerConnection>scm:git:ssh://github.com:PIH/openmrs-config-pihliberia.git</developerConnection>
+        <url>https://github.com/PIH/openmrs-config-pihliberia</url>
+    </scm>
 
     <distributionManagement>
         <snapshotRepository>
