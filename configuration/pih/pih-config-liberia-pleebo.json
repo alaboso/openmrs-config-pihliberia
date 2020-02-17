@@ -15,7 +15,22 @@
     "systemAdministration",
     "myAccount",
     "overviewReports",
-    "dataExports"
+    "dataExports",
+    "checkInHomepageApp",
+    "vitals",
+    "allergies",
+    "relationships",
+    "programs",
+    "mentalHealth",
+    "ncd",
+    "patientDocuments",
+    "conditionList",
+    "primaryCare",
+    "managePrinters",
+    "bmiOnClinicianDashboard",
+    "activeVisits",
+    "waitingForConsult",
+    "relationships"
   ],
 
   "primaryIdentifierPrefix": "PL",
