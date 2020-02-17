@@ -195,10 +195,7 @@
                     if($(it).val() == 'active'){
                         $(it).click();
                         $(it).prop("checked", true);
-                        $(it).unbind('click').click(function () {
-                            $(this).prop("checked", true);
-                            return false;
-                        });
+                        $(it).hide();
                     } else {
                         $(it).attr('disabled',true).hide();
                         $('label[for = '+$(it).attr('id')+']').hide();
