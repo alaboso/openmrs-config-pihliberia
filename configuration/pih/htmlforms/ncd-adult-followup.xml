@@ -513,14 +513,53 @@
                              answerConceptIds="CIEL:120575,CIEL:120574,CIEL:120579,CIEL:120578,CIEL:120577"
                              answerLabels="CKD I,CKD II,CKD III,CKD IV,CKD V"
                              style="checkbox" answerSeparator=""/>
-
-                        <!--<obs conceptId="CIEL:159596"
-                             labelCode="pihcore.ncd.chronic.kidney.disease.stage"
-                             answerConceptIds="CIEL:1132, PIH:4057"
-                             style="checkbox"/>-->
                     </div>
 
                     <br/>
+
+                    <div>
+                        <table>
+                            <repeat>
+                                <template>
+                                    <tr>
+                                        <obsgroup groupingConceptId="{groupingConcept}">
+                                            <td>
+                                                {label}
+                                            </td>
+                                            <td>
+                                                <label class="inline">
+                                                    Date of test:
+                                                </label>
+                                                <obs id="test-date-{name}" conceptId="PIH:DATE OF LABORATORY TEST"
+                                                     class="inline"/>
+                                            </td>
+                                            <td>
+                                                <label class="inline">
+                                                    Test result:
+                                                </label>
+                                                <span class="list-inline">
+                                                    <obs conceptId="{concept}" style="radio"
+                                                         answerConceptIds="CIEL:703,CIEL:664,CIEL:1138,CIEL:1067"/>
+                                                </span>
+                                            </td>
+                                        </obsgroup>
+                                    </tr>
+                                </template>
+                                <render groupingConcept="CIEL:161475" concept="CIEL:161472" name="hbv_spot_test"
+                                        label="HBsAg spot"/>
+                                <render groupingConcept="CIEL:161474" concept="CIEL:161471" name="hcv_spot_test"
+                                        label="HCV spot"/>
+                            </repeat>
+                            <tr>
+                                <obsgroup groupingConceptId="CIEL:1421">
+                                    <td colspan="3">
+                                        <obs conceptId="CIEL:984" answerConceptId="CIEL:782"/>
+                                        <obs conceptId="CIEL:1410"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                        </table>
+                    </div>
 
                 </div>
             </section>

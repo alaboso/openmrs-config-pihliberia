@@ -18,6 +18,8 @@
           formName="Mental Health (Liberia)"
           formEncounterType="a8584ab8-cc2a-11e5-9956-625662870761" formVersion="1.0">
 
+    <redirectOnSave url="/pihcore/visit/visit.page?patient={{patient.id}}&amp;encounter={{encounter.id}}#/overview"/>
+
     <style type="text/css">
 
         #who-when-where {
@@ -193,10 +195,7 @@
                     if($(it).val() == 'active'){
                         $(it).click();
                         $(it).prop("checked", true);
-                        $(it).unbind('click').click(function () {
-                            $(this).prop("checked", true);
-                            return false;
-                        });
+                        $(it).hide();
                     } else {
                         $(it).attr('disabled',true).hide();
                         $('label[for = '+$(it).attr('id')+']').hide();
@@ -219,12 +218,21 @@
         </p>
     </div>
 
+
+
     <ifMode mode="VIEW" include="false">
         <h2>
             <label>
                 <uimessage code="pihcore.mentalhealth.liberia.title"/>
             </label>
         </h2>
+
+        <span id="mh_mrn_enter" style="float:right;">
+            <label class="inline">MRN:</label>
+            <span class="inline">
+                <patient field="identifier" identifierTypeId="23507d1e-4f22-11ea-9717-645d86728797" required="false"/>
+            </span>
+        </span>
 
         <!-- users with retroConsultNote privilege can edit provider, location, and date for both retro and active visits -->
         <includeIf velocityTest="$user.hasPrivilege('Task: emr.retroConsultNote')">
@@ -337,7 +345,6 @@
             </div>
         </includeIf>
     </ifMode>
-
 
     <!-- Program enrollment -->
     <enrollInProgram programId="Mental Health"/>

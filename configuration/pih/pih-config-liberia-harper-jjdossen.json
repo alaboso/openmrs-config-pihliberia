@@ -10,7 +10,21 @@
     "systemAdministration",
     "myAccount",
     "overviewReports",
-    "dataExports"
+    "dataExports",
+    "checkInHomepageApp",
+    "vitals",
+    "allergies",
+    "relationships",
+    "programs",
+    "mentalHealth",
+    "patientDocuments",
+    "conditionList",
+    "primaryCare",
+    "managePrinters",
+    "bmiOnClinicianDashboard",
+    "activeVisits",
+    "waitingForConsult",
+    "relationships"
   ],
 
   "primaryIdentifierPrefix": "JJD",
