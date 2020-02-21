@@ -6,7 +6,7 @@
     <name>PIH Liberia OpenMRS Configuration</name>
     <description>Top-Level configuration for PIH Liberia OpenMRS distro</description>
     <url>https://github.com/PIH/openmrs-config-pihliberia</url>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -53,7 +53,7 @@
 
     <build>
         <filters>
-            <filter>${project.build.directory}/openmrs-packager-config/configuration/constants.properties</filter>
+            <filter>${project.build.directory}/openmrs-packager-config/constants.properties</filter>
         </filters>
         <plugins>
             <plugin>
@@ -70,7 +70,7 @@
             <plugin>
                 <groupId>org.openmrs.maven.plugins</groupId>
                 <artifactId>openmrs-packager-maven-plugin</artifactId>
-                <version>1.1.0</version>
+                <version>1.0.1</version>
                 <executions>
                     <execution>
                         <id>generate-resource-filters</id>
