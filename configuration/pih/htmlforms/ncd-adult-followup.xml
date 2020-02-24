@@ -1129,8 +1129,8 @@
                                     <td id="{name}-rx-route">
                                         <obs id="route-{name}" class="route select-arrow"
                                              conceptId="PIH:12651"
-                                             answerConceptIds="CIEL:160240,CIEL:160242,CIEL:160243"
-                                             answerLabels="Oral,IV,IM"/>
+                                             answerConceptIds="CIEL:160240,CIEL:160242,CIEL:160243,CIEL:160245"
+                                             answerLabels="Oral,IV,IM,SubQ"/>
                                     </td>
                                     <td id="{0}-rx-frequency">
                                         <obs id="{0}-frequencyCoded" class="frequency select-arrow"
