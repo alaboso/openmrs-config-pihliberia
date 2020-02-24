@@ -1025,26 +1025,6 @@
                             </obsgroup>
                         </tr>
                         <tr>
-                            <obsgroup groupingConceptId="CIEL:161488">
-                                <td>
-                                    <obs id="test-date-iStat" conceptId="PIH:DATE OF LABORATORY TEST"
-                                         placeholder="Enter date"/>
-                                </td>
-                                <td>
-                                    Renal panel
-                                </td>
-                                <td>
-                                    <span class="inline">
-                                        <label class="inline">BUN (mg/dL)</label>
-                                        <span class="inline">
-                                            <obs id="bun" conceptId="PIH:12655"
-                                                 answerLabel="" class="first-label-inline"/>
-                                        </span>
-                                    </span>
-                                </td>
-                            </obsgroup>
-                        </tr>
-                        <tr>
                             <obsgroup groupingConceptId="PIH:3646">
                                 <td>
                                     <obs id="test-date-iStat" conceptId="PIH:DATE OF LABORATORY TEST"
