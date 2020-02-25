@@ -37,7 +37,8 @@
     "primaryCare",
     "socioEconomics",
     "edTriage",
-    "edTriageQueue"
+    "edTriageQueue",
+    "labs"
   ],
 
   "primaryIdentifierPrefix": "HP",
