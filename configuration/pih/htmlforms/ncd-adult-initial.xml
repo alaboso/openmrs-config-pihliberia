@@ -101,19 +101,19 @@
         <script type="text/javascript">
 
             jq(function() {
-                $('#condition-status > input:radio').each(function(idx, it){
-                    if($(it).val() == 'active'){
-                        $(it).click();
-                        $(it).prop("checked", true);
-                        $(it).unbind('click').click(function () {
-                            $(this).prop("checked", true);
-                            return false;
-                        });
-                    } else {
-                        $(it).attr('disabled',true).hide();
-                        $('label[for = '+$(it).attr('id')+']').hide();
-                    }
-                });
+            $('#condition-status > input:radio').each(function(idx, it){
+            if($(it).val() == 'active'){
+            $(it).click();
+            $(it).prop("checked", true);
+            $(it).unbind('click').click(function () {
+            $(this).prop("checked", true);
+            return false;
+            });
+            } else {
+            $(it).attr('disabled',true).hide();
+            $('label[for = '+$(it).attr('id')+']').hide();
+            }
+            });
             });
 
         </script>
@@ -418,6 +418,68 @@
                         </span>
                     </span>
                 </p>
+
+                <includeIf velocityTest="$patient.gender == 'F' and $patient.age gt 10 and $patient.age lt 65">
+                    <p>
+                        <label class="inline">
+                            Has the patient delivered within the past 5 years?
+                        </label>
+                        <span class="list-inline">
+                            <obs id="delivery-within-past-5-years" conceptId="PIH:12722"
+                                 answerConceptIds="PIH:YES,PIH:NO,PIH:UNKNOWN">
+                                <controls>
+                                    <when value="PIH:YES" thenDisplay="#mch-concept-set"/>
+                                </controls>
+                            </obs>
+                        </span>
+                        <br/>
+                        <span id="mch-concept-set">
+                            <span class="inline">
+                                <label class="inline">
+                                    Number of times with big belly?
+                                </label>
+                                <obs conceptId="CIEL:5624" labelText="" class="inline"/>
+                            </span>
+                            <span class="inline">
+                                <label class="inline">
+                                    How many children has she born:
+                                </label>
+                                <obs conceptId="CIEL:1053" labelText="" class="inline"/>
+                            </span>
+                            <br/>
+                            <br/>
+                            <span class="inline">
+                                <label class="inline">
+                                    Any problems during big belly with:
+                                </label>
+                                <br/>
+                                <repeat>
+                                    <template>
+                                        <span class="inline" style="width:45%;">
+                                            <obs conceptId="CIEL:160079" style="checkbox" answerConceptId="{concept}"/>
+                                        </span>
+                                    </template>
+
+                                    <render concept="CIEL:140147"/>
+                                    <render concept="CIEL:165193"/>
+                                    <render concept="CIEL:138291"/>
+                                    <render concept="CIEL:113054"/>
+                                </repeat>
+                            </span>
+                            <br/>
+                            <br/>
+                            <span>
+                                <label class="inline">
+                                    Did her symptoms start around the time of delivery?
+                                </label>
+                                <span class="list-inline">
+                                    <obs conceptId="PIH:12733" answerConceptIds="PIH:YES,PIH:NO,PIH:UNKNOWN"
+                                         style="radio"/>
+                                </span>
+                            </span>
+                        </span>
+                    </p>
+                </includeIf>
             </div>
         </section>
 
@@ -769,315 +831,329 @@
 
             <div class="section-container">
                 <table>
-                    <tr>
-                        <td>General</td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:GENERAL EXAM FINDINGS"
-                                     answerConceptId="PIH:WELL APPEARING" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:GENERAL EXAM FINDINGS"
-                                     answerConceptId="CIEL:160282" style="checkbox" class="first-label-inline"
-                                     labelText="Alert and Oriented" answerLabel=""/>
-                            </span>
-
-                        </td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:GENERAL EXAM FINDINGS"
-                                     answerConceptId="PIH:CACHECTIC" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:GENERAL EXAM FINDINGS"
-                                     answerConceptId="PIH:Obesity" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:GENERAL EXAM FINDINGS"
-                                     answerConceptId="PIH:CONFUSION" style="checkbox" class="first-label-inline"/>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>HEENT</td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:HEENT EXAM FINDINGS"
-                                     answerConceptId="PIH:117" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:HEENT EXAM FINDINGS"
-                                     answerConceptId="PIH:3757" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:HEENT EXAM FINDINGS"
-                                     answerConceptId="PIH:12617" style="checkbox" class="first-label-inline"/>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:HEENT EXAM FINDINGS"
-                                     answerConceptId="CIEL:127918" style="checkbox" class="first-label-inline"
-                                     labelText="JVP high" answerLabel=""/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:HEENT EXAM FINDINGS"
-                                     answerConceptId="PIH:JAUNDICE" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:HEENT EXAM FINDINGS"
-                                     answerConceptId="PIH:PALE CONJUNCTIVA" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:HEENT EXAM FINDINGS"
-                                     answerConceptId="PIH:GOITER" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:HEENT EXAM FINDINGS"
-                                     answerConceptId="CIEL:162941" style="checkbox" class="first-label-inline"/>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Lungs</td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:CHEST EXAM FINDINGS"
-                                     answerConceptId="CIEL:1115" style="checkbox" class="first-label-inline"
-                                     labelText="Clear" answerLabel=""/>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:CHEST EXAM FINDINGS"
-                                     answerConceptId="CIEL:127640" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CHEST EXAM FINDINGS"
-                                     answerConceptId="CIEL:122863" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CHEST EXAM FINDINGS"
-                                     answerConceptId="CIEL:125061" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span id="location-of-crackles" class="first-label-inline">
-                                <label class="inline">
-                                    Location of crackles
-                                </label>
-                                <obs conceptId="CIEL:159485"/>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Heart</td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:REGULAR RHYTHM" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:NO CARDIAC MURMURS" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:PMI NOT DISPLACED" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:S1 AND S2 NORMAL" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-
-                        </td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:BRADYCARDIA" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:TACHYCARDIA" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:ATRIAL FIBRILLATION"
-                                     labelText="Irregular rhythm" answerLabel="" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:DISPLACED POINT OF MAXIMAL IMPULSE"
-                                     labelText="PMI displaced" answerLabel="" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-
-                                <repeat>
-                                    <template>
-                                        <span class="inline">
-                                            <obsgroup groupingConceptId="PIH:CARDIAC MURMUR CONSTRUCT">
-                                                <span>
-                                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                                         answerConceptId="PIH:CARDIAC MURMUR" style="checkbox"
-                                                         class="first-label-inline" labelText="Murmur #{index}"
-                                                         answerLabel=""
-                                                         toggle="cardiac-murmur-{index}"/>
-                                                </span>
-                                                <br/>
-                                                <span id="cardiac-murmur-{index}">
-                                                    <obs id="cardiac-murmur-{index}-dx"
-                                                         conceptId="PIH:CARDIAC MURMUR DIAGNOSIS"/>
-                                                    <obs id="cardiac-murmur-{index}-location" conceptId="PIH:12608"/>
-                                                </span>
-                                            </obsgroup>
-                                        </span>
-                                    </template>
-                                    <render index="1"/> <!-- murmur #1-->
-                                    <render index="2"/> <!-- murmur #2-->
-                                </repeat>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:S3 GALLOP" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
-                                     answerConceptId="PIH:S4 GALLOP" style="checkbox" class="first-label-inline"/>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Abdomen</td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:SOFT ABDOMEN" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:NO ABDOMINAL TENDERNESS" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:NO PRESENCE OF ASCITES" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:NO PRESENCE OF HEPATOMEGALY" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:NO PRESENCE OF SPLENOMEGALY" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:HEPATOMEGALY" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:ASCITES" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:SPLENOMEGALY" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                     answerConceptId="PIH:ABDOMINAL TENDERNESS" style="checkbox"
-                                     class="first-label-inline" toggle="tenderness-quadrant"/>
-                                &amp;nbsp
-                                <span id="tenderness-quadrant">
-                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
-                                         answerConceptIds="CIEL:124994,CIEL:124996,CIEL:124993,CIEL:124995"
-                                         answerLabels="RUQ,LUQ,RLQ,LLQ" style="checkbox"
+                    <thead>
+                        <tr>
+                            <th>Exam</th>
+                            <th>Normal</th>
+                            <th>Abnormal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>General</td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:GENERAL EXAM FINDINGS"
+                                         answerConceptId="PIH:WELL APPEARING" style="checkbox"
                                          class="first-label-inline"/>
                                 </span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Neuro</td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:NEUROLOGIC EXAM FINDINGS"
-                                     answerConceptId="PIH:NORMAL" style="checkbox" class="first-label-inline"
-                                     labelText="No focal deficit" answerLabel=""/>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:NEUROLOGIC EXAM FINDINGS"
-                                     answerConceptId="PIH:FOCAL NEUROLOGICAL DEFICIT" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:NEUROLOGIC EXAM FINDINGS"
-                                     answerConceptId="CIEL:165588" style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:NEUROLOGIC EXAM FINDINGS"
-                                     answerConceptId="CIEL:165589 " style="checkbox"
-                                     class="first-label-inline"/>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Extremities</td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="PIH:Normal, without peripheral edema" style="checkbox"
-                                     class="first-label-inline" labelText="No peripheral edema" answerLabel=""/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="PIH:12623" style="checkbox" class="first-label-inline"
-                                     labelText="2+ normal pulses (radial and pedal)" answerLabel=""/>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="CIEL:130428" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="CIEL:130166" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="CIEL:136522" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="CIEL:124823" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="CIEL:123919" style="checkbox" class="first-label-inline"
-                                     labelText="Ulceration" answerLabel=""/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="PIH:CYANOSIS" style="checkbox" class="first-label-inline"/>
-                            </span>
-                            <span class="inline">
-                                <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
-                                     answerConceptId="CIEL:588" style="checkbox" class="first-label-inline"/>
-                            </span>
-                        </td>
-                    </tr>
+                                <span class="inline">
+                                    <obs conceptId="PIH:GENERAL EXAM FINDINGS"
+                                         answerConceptId="CIEL:160282" style="checkbox" class="first-label-inline"
+                                         labelText="Alert and Oriented" answerLabel=""/>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:GENERAL EXAM FINDINGS"
+                                         answerConceptId="PIH:CACHECTIC" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:GENERAL EXAM FINDINGS"
+                                         answerConceptId="PIH:Obesity" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:GENERAL EXAM FINDINGS"
+                                         answerConceptId="PIH:CONFUSION" style="checkbox" class="first-label-inline"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>HEENT</td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:HEENT EXAM FINDINGS"
+                                         answerConceptId="PIH:117" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:HEENT EXAM FINDINGS"
+                                         answerConceptId="PIH:3757" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:HEENT EXAM FINDINGS"
+                                         answerConceptId="PIH:12617" style="checkbox" class="first-label-inline"/>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:HEENT EXAM FINDINGS"
+                                         answerConceptId="CIEL:127918" style="checkbox" class="first-label-inline"
+                                         labelText="JVP high" answerLabel=""/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:HEENT EXAM FINDINGS"
+                                         answerConceptId="PIH:JAUNDICE" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:HEENT EXAM FINDINGS"
+                                         answerConceptId="PIH:PALE CONJUNCTIVA" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:HEENT EXAM FINDINGS"
+                                         answerConceptId="PIH:GOITER" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:HEENT EXAM FINDINGS"
+                                         answerConceptId="CIEL:162941" style="checkbox" class="first-label-inline"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lungs</td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CHEST EXAM FINDINGS"
+                                         answerConceptId="CIEL:1115" style="checkbox" class="first-label-inline"
+                                         labelText="Clear" answerLabel=""/>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CHEST EXAM FINDINGS"
+                                         answerConceptId="CIEL:127640" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CHEST EXAM FINDINGS"
+                                         answerConceptId="CIEL:122863" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CHEST EXAM FINDINGS"
+                                         answerConceptId="CIEL:125061" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span id="location-of-crackles" class="first-label-inline">
+                                    <label class="inline">
+                                        Location of crackles
+                                    </label>
+                                    <obs conceptId="CIEL:159485"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Heart</td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:REGULAR RHYTHM" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:NO CARDIAC MURMURS" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:PMI NOT DISPLACED" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:S1 AND S2 NORMAL" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+
+                            </td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:BRADYCARDIA" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:TACHYCARDIA" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:ATRIAL FIBRILLATION"
+                                         labelText="Irregular rhythm" answerLabel="" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:DISPLACED POINT OF MAXIMAL IMPULSE"
+                                         labelText="PMI displaced" answerLabel="" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+
+                                    <repeat>
+                                        <template>
+                                            <span class="inline">
+                                                <obsgroup groupingConceptId="PIH:CARDIAC MURMUR CONSTRUCT">
+                                                    <span>
+                                                        <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                                             answerConceptId="PIH:CARDIAC MURMUR" style="checkbox"
+                                                             class="first-label-inline" labelText="Murmur #{index}"
+                                                             answerLabel=""
+                                                             toggle="cardiac-murmur-{index}"/>
+                                                    </span>
+                                                    <br/>
+                                                    <span id="cardiac-murmur-{index}">
+                                                        <obs id="cardiac-murmur-{index}-dx"
+                                                             conceptId="PIH:CARDIAC MURMUR DIAGNOSIS"/>
+                                                        <obs id="cardiac-murmur-{index}-location"
+                                                             conceptId="PIH:12608"/>
+                                                    </span>
+                                                </obsgroup>
+                                            </span>
+                                        </template>
+                                        <render index="1"/> <!-- murmur #1-->
+                                        <render index="2"/> <!-- murmur #2-->
+                                    </repeat>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:S3 GALLOP" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:CARDIAC EXAM FINDINGS"
+                                         answerConceptId="PIH:S4 GALLOP" style="checkbox" class="first-label-inline"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Abdomen</td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:SOFT ABDOMEN" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:NO ABDOMINAL TENDERNESS" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:NO PRESENCE OF ASCITES" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:NO PRESENCE OF HEPATOMEGALY" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:NO PRESENCE OF SPLENOMEGALY" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:HEPATOMEGALY" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:ASCITES" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:SPLENOMEGALY" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                         answerConceptId="PIH:ABDOMINAL TENDERNESS" style="checkbox"
+                                         class="first-label-inline" toggle="tenderness-quadrant"/>
+                                    &amp;nbsp
+                                    <span id="tenderness-quadrant">
+                                        <obs conceptId="PIH:ABDOMINAL EXAM FINDINGS"
+                                             answerConceptIds="CIEL:124994,CIEL:124996,CIEL:124993,CIEL:124995"
+                                             answerLabels="RUQ,LUQ,RLQ,LLQ" style="checkbox"
+                                             class="first-label-inline"/>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Neuro</td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:NEUROLOGIC EXAM FINDINGS"
+                                         answerConceptId="PIH:NORMAL" style="checkbox" class="first-label-inline"
+                                         labelText="No focal deficit" answerLabel=""/>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:NEUROLOGIC EXAM FINDINGS"
+                                         answerConceptId="PIH:FOCAL NEUROLOGICAL DEFICIT" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:NEUROLOGIC EXAM FINDINGS"
+                                         answerConceptId="CIEL:165588" style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:NEUROLOGIC EXAM FINDINGS"
+                                         answerConceptId="CIEL:165589 " style="checkbox"
+                                         class="first-label-inline"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Extremities</td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="PIH:Normal, without peripheral edema" style="checkbox"
+                                         class="first-label-inline" labelText="No peripheral edema" answerLabel=""/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="PIH:12623" style="checkbox" class="first-label-inline"
+                                         labelText="2+ normal pulses (radial and pedal)" answerLabel=""/>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="CIEL:130428" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="CIEL:130166" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="CIEL:136522" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="CIEL:124823" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="CIEL:123919" style="checkbox" class="first-label-inline"
+                                         labelText="Ulceration" answerLabel=""/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="PIH:CYANOSIS" style="checkbox" class="first-label-inline"/>
+                                </span>
+                                <span class="inline">
+                                    <obs conceptId="PIH:EXTREMITY EXAM FINDINGS"
+                                         answerConceptId="CIEL:588" style="checkbox" class="first-label-inline"/>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </section>
