@@ -24,7 +24,8 @@
     "bmiOnClinicianDashboard",
     "activeVisits",
     "waitingForConsult",
-    "relationships"
+    "relationships",
+    "idcardPrinting"
   ],
 
   "primaryIdentifierPrefix": "JJD",
