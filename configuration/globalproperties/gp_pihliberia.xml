@@ -49,12 +49,12 @@
         <!-- Check In -->
         <globalProperty>
             <property>mirebalais.checkIn.paymentAmounts</property>
-            <value>100,75,50,0</value>
+            <value>100,75,50,25</value>
         </globalProperty>
 
         <globalProperty>
             <property>mirebalais.checkIn.paymentAmountLabels</property>
-            <value>100,75,50,Exempt</value>
+            <value>100,75,50,25</value>
         </globalProperty>
 
         <globalProperty>
